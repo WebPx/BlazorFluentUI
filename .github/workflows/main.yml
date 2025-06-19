@@ -1,0 +1,50 @@
+
+name: BlazorFluentUI 8
+
+env:
+  SUBFOLDER: './src/BlazorFluentUI.CoreComponents'
+  PROJECT: 'BlazorFluentUI.CoreComponents.csproj'
+
+on:
+  push:
+    paths:
+      - 'src/BlazorFluentUI.CoreComponents/**'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: [self-hosted, webpx, build]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'  # Use your required .NET version
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.SUBFOLDER }}/${{ env.PROJECT }}
+
+    - name: Build (Release)
+      run: dotnet build ${{ env.SUBFOLDER }}/${{ env.PROJECT }} --configuration Release --no-restore
+
+    - name: Pack NuGet package
+      run: dotnet pack ${{ env.SUBFOLDER }}/${{ env.PROJECT }} --configuration Release --no-build --output ${{ github.workspace }}\nupkgs
+ 
+    - name: Publish to GitHub Packages
+      run: dotnet nuget push ${{ github.workspace }}\nupkgs\*.nupkg --source "github" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #continue-on-error: true
+
+    - name: Upload package as workflow artifact (optional)
+      uses: actions/upload-artifact@v4
+      with:
+        name: nupkg
+        path: ./nupkgs/*.nupkg
+
+    - name: Clean up (optional)
+      run: rm -Force -Recurse ./nupkgs
