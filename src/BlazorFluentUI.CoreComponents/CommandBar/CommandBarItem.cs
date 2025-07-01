@@ -32,7 +32,10 @@ namespace BlazorFluentUI
         public string? Href { get; set; }
 
         public string? IconName { get; set; }
+        
         public string? IconSrc { get; set; }
+
+        public bool UseFluentUISystemIcons { get; set; } = true;
 
         //public object IconProps { get; set; }
 

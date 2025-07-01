@@ -32,6 +32,7 @@ namespace BlazorFluentUI.Routing
 
         public string? IconName { get; set; }
         public string? IconSrc { get; set; }
+        public bool UseFluentUISystemIcons { get; set; } = true;
 
         public string? Id { get; set; }
 
