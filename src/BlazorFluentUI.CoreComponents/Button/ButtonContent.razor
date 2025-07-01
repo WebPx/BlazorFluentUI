@@ -9,7 +9,7 @@
       @ref="RootElementReference">
     @if (IconName != null || IconSrc != null)
     {
-        <Icon ClassName="ms-Button-icon" IconName=@IconName IconSrc=@IconSrc />
+        <Icon ClassName="ms-Button-icon" IconName=@IconName IconSrc=@IconSrc UseFluentUISystemIcons="@UseFluentUISystemIcons" />
     }
     @if (Text != null || (isCompoundButton && SecondaryText != null))
     {

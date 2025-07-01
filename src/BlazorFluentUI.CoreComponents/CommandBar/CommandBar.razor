@@ -23,7 +23,7 @@
                                 <TooltipHost>
                                     <ChildContent>
                                         <CommandBarButton IconName=@context.IconName
-                                                             IconSrc="@context.IconSrc"
+                                                          IconSrc="@context.IconSrc" UseFluentUISystemIcons="@context.UseFluentUISystemIcons"
                                                              Text=@(!context.IconOnly ? context.Text : null)
                                                              MenuItems=@context.Items
                                                              Href=@context.Href
@@ -42,7 +42,7 @@
                             else
                             {
                                 <CommandBarButton IconName=@context.IconName
-                                                     IconSrc="@context.IconSrc"
+                                                  IconSrc="@context.IconSrc" UseFluentUISystemIcons="@context.UseFluentUISystemIcons"
                                                      Text=@(!context.IconOnly ? context.Text : null)
                                                      MenuItems=@context.Items
                                                      Href=@context.Href
@@ -68,7 +68,7 @@
                             <TooltipHost>
                                 <ChildContent>
                                     <CommandBarButton IconName=@context.IconName
-                                                         IconSrc="@context.IconSrc"
+                                                      IconSrc="@context.IconSrc" UseFluentUISystemIcons="@context.UseFluentUISystemIcons"
                                                          Text=@(!context.IconOnly ? context.Text : null)
                                                          MenuItems=@context.Items
                                                          Href=@context.Href
@@ -87,7 +87,7 @@
                         else
                         {
                             <CommandBarButton IconName=@context.IconName
-                                                 IconSrc=@context.IconSrc
+                                              IconSrc=@context.IconSrc UseFluentUISystemIcons="@context.UseFluentUISystemIcons"
                                                  Text=@(!context.IconOnly ? context.Text : null)
                                                  Href=@context.Href
                                                  MenuItems=@context.Items
