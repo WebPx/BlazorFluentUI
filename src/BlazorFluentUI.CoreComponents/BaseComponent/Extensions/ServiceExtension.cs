@@ -12,6 +12,10 @@ namespace BlazorFluentUI
             services.AddScoped<ThemeProvider>();
             services.AddScoped<ScopedStatics>();
             services.AddScoped<LayerHostService>();
+            services.Configure<FluentUISettings>(options =>
+            {
+                options.UseFluentUISystemIcons = true;
+            });
         }
     }
 }

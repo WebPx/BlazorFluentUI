@@ -1,15 +1,19 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
 
 namespace BlazorFluentUI
 {
     public partial class Icon : FluentUIComponentBase
     {
+
         [Parameter] public bool Filled { get; set; }
         [Parameter] public string? IconName { get; set; }
         [Parameter] public int IconSize { get; set; } = 20;
         [Parameter] public string? IconSrc { get; set; }
         [Parameter] public IconType IconType { get; set; }
         [Parameter] public bool UseFluentUISystemIcons { get; set; } = true;
+
+        private bool IsSystemIcons => Settings.UseFluentUISystemIcons && UseFluentUISystemIcons;
 
         public string IconClassName
         {
@@ -21,7 +25,7 @@ namespace BlazorFluentUI
                 }
                 else
                 {
-                    if (!UseFluentUISystemIcons)
+                    if (!IsSystemIcons)
                     {
                         return IconName;
                     }
@@ -37,9 +41,7 @@ namespace BlazorFluentUI
         {
             get
             {
-                return $@"font-family: FluentSystemIcons-{(Filled ? "Filled" : "Regular")} !important;
-{this.Style}
-";
+                return IsSystemIcons ? $@"font-family: FluentSystemIcons-{(Filled ? "Filled" : "Regular")} !important; {this.Style}" : this.Style!;
             }
         }
 
@@ -53,7 +55,7 @@ namespace BlazorFluentUI
                 }
                 else
                 {
-                    if (!UseFluentUISystemIcons)
+                    if (!IsSystemIcons)
                     {
                         return IconName;
                     }

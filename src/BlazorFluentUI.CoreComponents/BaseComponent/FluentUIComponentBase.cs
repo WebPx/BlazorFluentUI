@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 
 using System;
@@ -17,6 +18,11 @@ namespace BlazorFluentUI
         //[Inject] private IComponentContext ComponentContext { get; set; }
         [Inject] protected IJSRuntime? JSRuntime { get; set; }
         [Inject] private ThemeProvider ThemeProvider { get; set; } = new ThemeProvider();
+        [Inject] private IOptions<FluentUISettings>? _settingsOptions { get; set; }
+
+        private FluentUISettings? _settings;
+
+        protected FluentUISettings Settings => _settings ??= _settingsOptions?.Value ?? BlazorFluentUI.FluentUISettings.Default;
 
         [Parameter] public string? ClassName { get; set; }
         [Parameter] public string? Style { get; set; }
