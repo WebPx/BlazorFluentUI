@@ -64,7 +64,18 @@ namespace BlazorFluentUI
 
         [Inject] ScopedStatics? ScopedStatics { get; set; }
 
-        protected const string BasePath = "./_content/BlazorFluentUI.CoreComponents/baseComponent.js";
+        internal const string BaseComponentJs = "baseComponent.js";
+        internal const string BaseComponentPath = "_content/BlazorFluentUI.CoreComponents/";
+        internal const string DefaultBasePath = "./";
+
+        private static string? _appBasePath = null;
+        private static string? _baseComponentPath = null;
+
+        protected string AppBasePath => _appBasePath ??= (Settings.AssetsPath ?? ((Settings.BasePath ?? DefaultBasePath) + BaseComponentPath));
+
+        protected string BuildScriptPath(ref string? scriptPath, string scriptName) => scriptPath ??= AppBasePath + scriptName;
+
+        protected string BasePath => _baseComponentPath ??= BuildScriptPath(ref _baseComponentPath, BaseComponentJs);
         protected IJSObjectReference? baseModule;
 
         protected CancellationTokenSource cancellationTokenSource = new();

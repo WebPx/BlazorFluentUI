@@ -1,4 +1,5 @@
 ﻿@namespace BlazorFluentUI
+@using Microsoft.Extensions.Options
 @*This is a temporary solution until we find a better place for this css.*@
 <style>
     @BlazorFluentUI.Models.Keyframes.DefaultKeyFrames
@@ -9,11 +10,10 @@
 
     @@font-face {
         font-family: "FluentSystemIcons-Regular";
-        src: url("./_content/BlazorFluentUI.CoreComponents/FluentSystemIcons-Regular.ttf") format("truetype");
-    }
+        src: url("@(AppBasePath)FluentSystemIcons-Regular.ttf") format("truetype"); }
     @@font-face {
         font-family: "FluentSystemIcons-Filled";
-        src: url("./_content/BlazorFluentUI.CoreComponents/FluentSystemIcons-Filled.ttf") format("truetype");
+        src: url("@(AppBasePath)FluentSystemIcons-Filled.ttf") format("truetype");
     }
 
     i[class^="icon-"], i[class*=" icon-"] {
@@ -123,6 +123,11 @@
     [Inject]
     public ThemeProvider? ThemeProvider { get; set; }
 
+    [Inject] 
+    private IOptions<FluentUISettings>? _settingsOptions { get; set; }
+
+    protected FluentUISettings Settings => _settings ??= _settingsOptions?.Value ?? BlazorFluentUI.FluentUISettings.Default;
+
     [Parameter]
     public IPalette? InitialPalette { get; set; }
     [Parameter]
@@ -134,6 +139,11 @@
     public RenderFragment? ChildContent { get; set; }
 
     private bool firstThemeCheck;
+    private FluentUISettings? _settings;
+
+    private static string? _appBasePath = null;
+
+    protected string AppBasePath => _appBasePath ??= (Settings.AssetsPath ?? ((Settings.BasePath ?? FluentUIComponentBase.DefaultBasePath) + FluentUIComponentBase.BaseComponentPath));
 
     protected override void OnInitialized()
     {

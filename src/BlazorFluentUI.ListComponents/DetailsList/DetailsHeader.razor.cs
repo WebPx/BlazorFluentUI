@@ -95,7 +95,10 @@ namespace BlazorFluentUI.Lists
         [Parameter]
         public bool UseFastIcons { get; set; } = true;
 
-        private const string ScriptPath = "./_content/BlazorFluentUI.CoreComponents/detailsList.js";
+        private string? _scriptPath;
+
+        private string ScriptPath => _scriptPath ??= BuildScriptPath(ref _scriptPath, "detailsList.js");
+
         private IJSObjectReference? scriptModule;
 
         private bool showCheckbox;

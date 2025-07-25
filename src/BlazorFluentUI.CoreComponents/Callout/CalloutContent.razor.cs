@@ -11,7 +11,10 @@ namespace BlazorFluentUI
 {
     public partial class CalloutContent : FluentUIComponentBase, IAsyncDisposable
     {
-        private const string CalloutPath = "./_content/BlazorFluentUI.CoreComponents/callout.js";
+        private string? _calloutPath;
+
+        private string CalloutPath => _calloutPath ??= BuildScriptPath(ref _calloutPath, "callout.js");
+
         private IJSObjectReference? calloutModule;
 
 

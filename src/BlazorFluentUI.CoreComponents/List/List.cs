@@ -48,8 +48,10 @@ namespace BlazorFluentUI.Lists
         public bool IsVirtualizing { get; set; } = true;
         //[Parameter]
         //public EventCallback<Viewport> OnViewportChanged { get; set; }
+        private string? _scriptPath;
 
-        private const string scriptPath = "./_content/BlazorFluentUI.CoreComponents/list.js";
+        private string ScriptPath => _scriptPath ??= BuildScriptPath(ref _scriptPath, "list.js");
+
         private IJSObjectReference? scriptModule;
 
 
@@ -183,7 +185,7 @@ namespace BlazorFluentUI.Lists
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (scriptModule == null)
-                scriptModule = await JSRuntime!.InvokeAsync<IJSObjectReference>("import", scriptPath);
+                scriptModule = await JSRuntime!.InvokeAsync<IJSObjectReference>("import", ScriptPath);
             if (firstRender)
             {
                 _selfReference = DotNetObjectReference.Create(this);

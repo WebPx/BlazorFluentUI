@@ -41,7 +41,10 @@ namespace BlazorFluentUI
         private DotNetObjectReference<Slider>? selfReference;
         private Timer timer = new();
 
-        private const string ScriptPath = "./_content/BlazorFluentUI.CoreComponents/slider.js";
+        private string? _scriptPath;
+
+        private string ScriptPath => _scriptPath ??= BuildScriptPath(ref _scriptPath, "Slider.js");
+
         private IJSObjectReference? scriptModule;
 
         private string LengthString => (Vertical ? "height" : "width");

@@ -46,8 +46,9 @@ namespace BlazorFluentUI
         /// </summary>
         [Parameter] public string? OnClickTarget { get; set; }
 
+        private string? _scriptPath;
 
-        private const string ScriptPath = "./_content/BlazorFluentUI.CoreComponents/documentCard.js";
+        private string ScriptPath => _scriptPath ??= BuildScriptPath(ref _scriptPath, "documentCard.js");
         private IJSObjectReference? scriptModule;
 
         [Inject]
