@@ -27,7 +27,7 @@ namespace BlazorFluentUI
                 {
                     if (!IsSystemIcons)
                     {
-                        return IconName;
+                        return $"ms-Icon--{IconName}";
                     }
                     else
                     {
