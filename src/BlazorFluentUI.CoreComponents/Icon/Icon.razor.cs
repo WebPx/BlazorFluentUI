@@ -11,7 +11,7 @@ namespace BlazorFluentUI
         [Parameter] public int IconSize { get; set; } = 20;
         [Parameter] public string? IconSrc { get; set; }
         [Parameter] public IconType IconType { get; set; }
-        [Parameter] public bool UseFluentUISystemIcons { get; set; } = true;
+        [Parameter] public bool UseFluentUISystemIcons { get; set; } = false;
 
         private bool IsSystemIcons => Settings.UseFluentUISystemIcons && UseFluentUISystemIcons;
 
@@ -19,7 +19,7 @@ namespace BlazorFluentUI
         {
             get
             {
-                if (IconName == null)
+                if (string.IsNullOrEmpty(IconName))
                 {
                     return "ms-Icon-placeHolder";
                 }

@@ -10,7 +10,7 @@ namespace BlazorFluentUI
     {
         public static FluentUISettings Default { get; } = new FluentUISettings();
 
-        public bool UseFluentUISystemIcons { get; set; } = true;
+        public bool UseFluentUISystemIcons { get; set; } = false;
 
         public string? BasePath { get; set; }
 
