@@ -16,7 +16,7 @@ namespace BlazorFluentUI
             var setup = services.AddOptions<FluentUISettings>();
             setup.Configure(options =>
             {
-                options.UseFluentUISystemIcons = true;
+                options.UseFluentUISystemIcons = null;
             });
             if (configure != null)
                 setup.Configure(configure);

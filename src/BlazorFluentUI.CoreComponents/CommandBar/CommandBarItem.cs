@@ -35,7 +35,7 @@ namespace BlazorFluentUI
         
         public string? IconSrc { get; set; }
 
-        public bool UseFluentUISystemIcons { get; set; } = true;
+        public bool? UseFluentUISystemIcons { get; set; }
 
         //public object IconProps { get; set; }
 

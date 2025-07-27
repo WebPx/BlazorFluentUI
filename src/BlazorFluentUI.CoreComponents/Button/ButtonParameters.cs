@@ -23,7 +23,7 @@ namespace BlazorFluentUI
         [Parameter] public string? SecondaryText { get; set; }
         [Parameter] public bool Toggle { get; set; }
         [Parameter] public bool Split { get; set; }
-        [Parameter] public bool UseFluentUISystemIcons { get; set; } = true;
+        [Parameter] public bool? UseFluentUISystemIcons { get; set; }
 
         [Parameter] public string? IconName { get; set; }
         [Parameter] public string? IconSrc { get; set; }

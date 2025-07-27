@@ -15,7 +15,7 @@ namespace BlazorFluentUI
         public string? Href { get; set; }
         public string? IconName { get; set; }
         public string? IconSrc { get; set; }
-        public bool UseFluentUISystemIcons { get; set; } = true;
+        public bool? UseFluentUISystemIcons { get; set; }
         public ContextualMenuItemType ItemType { get; set; }
         public string? Key { get; set; }
         public object? KeytipProps { get; set; }

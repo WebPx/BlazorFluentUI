@@ -21,7 +21,7 @@
            aria-setsize=@AriaSetSize />
     <label class=@($"ms-Checkbox-label") for="@Id">
         <div class=@($"ms-Checkbox-checkbox")>
-            <Icon IconName="checkmark" IconSize=20 ClassName="ms-Checkbox-checkmark ms-Icon" AriaHidden=true></Icon>
+            <Icon IconName="checkmark" UseFluentUISystemIcons=true IconSize=20 ClassName="ms-Checkbox-checkmark ms-Icon" AriaHidden=true></Icon>
             @*<i class=@($"ms-Checkbox-checkmark ms-Icon ms-Icon--CheckMark") aria-hidden="true"></i>*@
         </div>
         @if (OnRenderLabel == null)

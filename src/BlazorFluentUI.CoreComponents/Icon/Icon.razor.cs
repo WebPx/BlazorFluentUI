@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Options;
 
 namespace BlazorFluentUI
 {
@@ -11,9 +10,9 @@ namespace BlazorFluentUI
         [Parameter] public int IconSize { get; set; } = 20;
         [Parameter] public string? IconSrc { get; set; }
         [Parameter] public IconType IconType { get; set; }
-        [Parameter] public bool UseFluentUISystemIcons { get; set; } = false;
+        [Parameter] public bool? UseFluentUISystemIcons { get; set; }
 
-        private bool IsSystemIcons => Settings.UseFluentUISystemIcons && UseFluentUISystemIcons;
+        private bool IsSystemIcons => UseFluentUISystemIcons ?? Settings?.UseFluentUISystemIcons ?? false;
 
         public string IconClassName
         {
