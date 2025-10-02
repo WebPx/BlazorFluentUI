@@ -174,8 +174,6 @@ namespace BlazorFluentUI
         {
             try
             {
-                if (base.RendererInfo.IsInteractive)
-                    return;
                 if (scriptModule != null)
                 {
                     await scriptModule!.InvokeVoidAsync("unregisterFocusZone", selfReference);
@@ -187,10 +185,6 @@ namespace BlazorFluentUI
                 selfReference?.Dispose();
 
                 await base.DisposeAsync();
-            }
-            catch (JSDisconnectedException)
-            {
-
             }
             catch (TaskCanceledException)
             {
