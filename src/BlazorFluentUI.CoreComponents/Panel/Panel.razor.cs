@@ -380,7 +380,8 @@ namespace BlazorFluentUI
         public override async ValueTask DisposeAsync()
         {
             _clearExistingAnimationTimer?.Invoke();
-
+            if (RendererInfo.IsInteractive)
+                return;
             try
             {
                 if (baseModule != null)
